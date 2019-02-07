@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GET_GEO, LOADING, CLEAR_GEO } from "./constant";
 
-// GET ALL GEO
+// GET ALL GEO Data
 export const getGeo = () => dispatch => {
   dispatch(setGeoLoading());
   axios

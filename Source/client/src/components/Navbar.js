@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
+import { clearGeoData } from "../actions/geoAction";
+
 
 class Navbar extends Component {
   constuctor() {
@@ -14,6 +16,7 @@ class Navbar extends Component {
   }
   onLogout(e) {
     e.preventDefault();
+    this.props.clearGeoData();
     this.props.logoutUser();
   }
   render() {
@@ -90,5 +93,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, clearGeoData }
 )(Navbar);

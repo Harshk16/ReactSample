@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import classnames from 'classnames';
 class Login extends Component {
   constructor() {
     super();
@@ -33,12 +32,12 @@ class Login extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const user = {
+    const userData = {
       grant_type: "password",
       email: this.state.email,
       password: this.state.password
     };
-    this.props.loginUser(user);
+    this.props.loginUser(userData);
   }
   render() {
     const { errors } = this.state;
@@ -51,28 +50,22 @@ class Login extends Component {
                 <div className="form-group">
                   <input
                     type="email"
-                    // className={classnames("form-control form-control-lg", {
-                    //     "is-invalid": errors.email
-                    //   })}
+                    className="form-control form-control-lg"
                     placeholder="Email Address"
                     name="email"
                     value={this.state.email}
                     onChange={this.onChange}
                   />
-                  {/* {errors.email && (<div className="invalid-feedback">{errors.email}</div>)} */}
                 </div>
                 <div className="form-group">
                   <input
                     type="password"
-                    // className={classnames("form-control form-control-lg", {
-                    //     "is-invalid": errors.password
-                    //   })}
+                    className="form-control form-control-lg"
                     placeholder="Password"
                     name="password"
                     value={this.state.password}
                     onChange={this.onChange}
                   />
-                  {/* {errors.email && <div className="invalid-feedback" />} */}
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>

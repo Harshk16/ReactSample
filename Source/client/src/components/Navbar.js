@@ -7,13 +7,7 @@ import { clearGeoData } from "../actions/geoAction";
 
 
 class Navbar extends Component {
-  constuctor() {
-    this.routeChange = this.routeChange.bind(this);
-  }
-  routeChange() {
-    
-    this.props.history.push('/create-geo');
-  }
+ 
   onLogout(e) {
     e.preventDefault();
     this.props.clearGeoData();
@@ -50,7 +44,7 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <a className="navbar-brand" href="landing.html">
+          <a className="navbar-brand" href="/dashboard">
             React Sample
           </a>
           <button
@@ -63,14 +57,6 @@ class Navbar extends Component {
           </button>
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav ml-auto">
-              <button
-                type="button"
-                onClick={this.routeChange}
-                className="btn btn-link"
-              >
-                Create GeoCaches
-              </button>
-
               <li className="nav-item">
                 {isAuthenticated ? oldUser : newUser}
               </li>

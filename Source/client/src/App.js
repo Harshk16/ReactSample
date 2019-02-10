@@ -6,7 +6,6 @@ import { setCurrentUser } from "./actions/authActions";
 import { clearGeoData } from "./actions/geoAction";
 import { logoutUser } from "./actions/authActions";
 
-
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -14,6 +13,8 @@ import Navbar from "./components/Navbar";
 import Register from "./components/User/Register";
 import Login from "./components/User/Login";
 import Dashboard from "./components/dashboard/Dashboard";
+import CreateGeoCaches from "./components/GeoCaches/CreateGeoCaches"
+import EditGeoCaches from "./components/GeoCaches/EditGeoCaches"
 import "./App.css";
 
 // Check for token
@@ -31,9 +32,9 @@ if (localStorage.jwtToken) {
   const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     // Logout user
-    store.dispatch(logoutUser());
+    // store.dispatch(logoutUser());
     // Clear Geo Data
-    store.dispatch(clearGeoData());
+    // store.dispatch(clearGeoData());
     // Route to login
     window.location.href = "/login";
   }
@@ -50,6 +51,9 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/create-geo" component={CreateGeoCaches} />
+              <Route exact path="/edit-geo" component={EditGeoCaches} />
+
             </div>
           </div>
         </Router>

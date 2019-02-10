@@ -43,19 +43,6 @@ class Register extends Component {
     };
 
     this.props.registerUser(user, this.props.history);
-
-    // var headers = {
-    //   "Content-Type": "application/json"
-    // };
-
-    // axios
-    //   .post(
-    //     "https://blooming-cove-35281.herokuapp.com/api/users",
-    //     { user: user },
-    //     { headers: headers }
-    //   )
-    //   .then(res => console.log("server response", res.data))
-    //   .catch(err => this.setState({ errors: err.response.data }));
   }
 
   render() {

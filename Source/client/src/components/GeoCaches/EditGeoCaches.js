@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {createGeo} from '../../actions/geoAction';
+import {getGeo} from '../../actions/geoAction';
 
-class CreateGeoCaches extends Component {
+class EditGeoCaches extends Component {
   constructor() {
     super();
     this.state = {
@@ -16,36 +16,20 @@ class CreateGeoCaches extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.getMyLocation = this.getMyLocation.bind(this);
   }
 
   componentDidMount() {
-    this.getMyLocation();
+    this.props.getGeo()
   }
 
-  getMyLocation() {
-    const location = window.navigator && window.navigator.geolocation;
-
-    if (location) {
-      location.getCurrentPosition(
-        position => {
-          this.setState(
-            {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude
-            },
-            console.log("lat lng", this.state)
-          );
-        },
-        error => {
-          this.setState({
-            latitude: "err-latitude",
-            longitude: "err-longitude"
-          });
-        }
-      );
-    }
+  componentWillReceiveProps(nextProps) {
+      if(nextProps.geo) {
+          const data = nextProps.geo
+          console.log("data edit", data);
+          
+      }
   }
+
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -122,8 +106,9 @@ class CreateGeoCaches extends Component {
   }
 }
 
-CreateGeoCaches.propTypes = {
+EditGeoCaches.propTypes = {
   createGeo: PropTypes.object.isRequired,
+  getGeo: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -133,4 +118,4 @@ const mapStateToProps = state => ({
   errors: state.error
 });
 
-export default connect(mapStateToProps, {createGeo})(withRouter(CreateGeoCaches));
+export default connect(mapStateToProps, {getGeo})(withRouter(EditGeoCaches));
